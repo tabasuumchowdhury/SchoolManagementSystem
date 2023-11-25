@@ -1,5 +1,5 @@
 # SchoolManagementSystem
-Final project - SchoolManagementSystem: It creates a school which contains departments, classes, teachers and students, 
+A school management system that contains departments, classes, teachers and students, 
 with their own individual IDs and max amounts.
 
 Final project for Introduction to Programming (420-201-RE sec.00002)
@@ -11,3 +11,5 @@ Features :
 - The system can register students to classes (max 5), and each class can have max 5 students;
 - The system can create new objects (departments, teachers, classes, students) and display the non-null ones;
 - The system can search any of the objects by using the IDs, and return null if there are no matches.
+
+![img_4.png](img_4.png)
