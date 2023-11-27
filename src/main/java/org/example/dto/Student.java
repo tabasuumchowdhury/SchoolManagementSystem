@@ -10,7 +10,7 @@ import lombok.*;
 public class Student {
     private String fname;
     private Course[] courses = new Course[5];
-    private String id;
+    private String studentId;
     private int courseNum;
     private String lname;
     private Department department;
@@ -18,7 +18,7 @@ public class Student {
 
     public Student(String fname, String lname, Department department) {
         for (nextId = 1; nextId <= 200; nextId++) {
-            this.id = String.format("S%03d", nextId++);
+            this.studentId = String.format("S%03d", nextId++);
         }
         this.fname = fname;
         this.lname = lname;

@@ -10,7 +10,7 @@ public class Teacher {
     private String fname;
     private String lname;
     private Department department;
-    private String id;
+    private String teacherId;
 
     String name = fname + lname;
 }

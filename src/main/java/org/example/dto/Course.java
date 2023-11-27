@@ -10,7 +10,7 @@ import lombok.*;
 @ToString
 public class Course {
     private double credit;
-    private String id;
+    private String courseId;
     private Student[] students;
     private Department department;
     private int studentNum;
