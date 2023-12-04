@@ -18,7 +18,7 @@ public class SchoolManagementSystem {
     }
 
     /**
-     * b) Adds a course
+     * b) Adds a student
      * @param fname Student's first name
      * @param lname Student's last name
      * @param departmentName the department they're registered to

@@ -9,13 +9,26 @@ import lombok.*;
  */
 @ToString
 public class Course {
+    private static int nextId = 1;
+    private static final int MAX_STUDENT_NUM  = 5;
+
     private double credit;
-    private String courseId;
+    private String id;
     private Student[] students;
     private Department department;
     private int studentNum;
     private Teacher teacher;
     private String courseName;
 
-    int MAX_STUDENT_NUM = 5;
+    public Course(String courseName, double credit, Department department) {
+        for (; nextId <= 5; nextId++) {
+            this.id = String.format("C%03d", nextId++);
+        }
+        this.credit = credit;
+        this.courseName = courseName;
+        this.department = department;
+        this.teacher = null;
+        this.students = new Student[MAX_STUDENT_NUM];
+        this.studentNum = 0;
+    }
 }

@@ -7,10 +7,21 @@ import lombok.*;
  */
 @ToString
 public class Teacher {
+    private static int nextId = 1;
     private String fname;
     private String lname;
     private Department department;
-    private String teacherId;
+    private String id;
 
-    String name = fname + lname;
+    public Teacher(String fname, String lname, Department department) {
+        for (; nextId <= 20; nextId++) {
+            this.id = String.format("T%03d", nextId++);
+        }
+        this.fname = fname;
+        this.lname = lname;
+        this.department = department;
+        String name = fname + lname;
+    }
+
+
 }
