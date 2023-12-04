@@ -6,6 +6,8 @@ import lombok.*;
  * The teachers (max 20) of a school with IDs.
  */
 @ToString
+@Getter
+@Setter
 public class Teacher {
     private static int nextId = 1;
     private String fname;

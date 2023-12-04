@@ -7,6 +7,8 @@ import lombok.*;
  * which are later assigned to 1 teacher and
  * can be registered by a maximum of 5 students.
  */
+@Setter
+@Getter
 @ToString
 public class Course {
     private static int nextId = 1;

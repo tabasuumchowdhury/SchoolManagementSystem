@@ -1,13 +1,14 @@
 package org.example.dto;
 
-import org.example.dto.Course;
-import org.example.dto.Department;
-import org.example.dto.Student;
-import org.example.dto.Teacher;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Objects;
-
+@Getter
+@Setter
 public class SchoolManagementSystem {
+    private static final int MAX_DEPARTMENT_NUM = 5;
+    private int getMaxDepartmentNum;
+    private Department[] department;
 
     /**
      * a) Adds a new department
@@ -15,6 +16,12 @@ public class SchoolManagementSystem {
      * @param departmentName the name of the department created
      */
     public static void addDepartment(String departmentName) {
+//        if (departmentNum < MAX_DEPARTMENT_NUM) {
+//            departments[departmentNum] = departmentName;
+//            System.out.println("Add department %s successfully", departmentName);
+//        } else {
+//            System.out.println("Max department reached, add a new department failed.");
+//        }
     }
 
     /**
@@ -24,6 +31,7 @@ public class SchoolManagementSystem {
      * @param departmentName the department they're registered to
      */
     public static void addStudent(String fname, String lname, String departmentName) {
+
     }
 
     /**
