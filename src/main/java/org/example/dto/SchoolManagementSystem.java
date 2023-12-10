@@ -151,7 +151,7 @@ public class SchoolManagementSystem {
      */
     public void printDepartments() {
         String departmentsStr = "";
-        for (Department department: departments) {
+        for (Department department : departments) {
             if (department != null) {
                 departmentsStr += department + "\n";
             }
@@ -163,7 +163,7 @@ public class SchoolManagementSystem {
      * f) Displays all the student of a school, that aren't null
      * Displays if there are any courses or departments.
      */
-    public static void printStudents() {
+    public void printStudents() {
         String studentsStr = "";
         for (Student student : students) {
             if (student != null) {
@@ -178,6 +178,13 @@ public class SchoolManagementSystem {
      * Displays if there are any courses or departments.
      */
     public void printTeachers(){
+        String teachersStr = "";
+        for (Teacher teacher : teachers) {
+            if (teacher != null) {
+                teachersStr += teacher + "\n";
+            }
+        }
+        System.out.println(teachersStr);
     }
 
     /**
@@ -185,6 +192,13 @@ public class SchoolManagementSystem {
      * Displays if there are any teachers, students or departments.
      */
     public void printCourses(){
+        String coursesStr = "";
+        for (Course course : courses) {
+            if (course != null) {
+                coursesStr += course + "\n";
+            }
+        }
+        System.out.println(coursesStr);
     }
 
     /**
