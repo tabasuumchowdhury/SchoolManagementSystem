@@ -11,5 +11,3 @@ Features :
 - The system can register students to classes (max 5), and each class can have max 5 students;
 - The system can create new objects (departments, teachers, classes, students) and display the non-null ones;
 - The system can search any of the objects by using the IDs, and return null if there are no matches.
-
-![img_4.png](src/main/resources/img_4.png)
