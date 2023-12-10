@@ -13,11 +13,11 @@ public class Student {
 
     private static int nextId = 1;
     private static final int MAX_COURSE_NUM = 5;
+    private int courseNum = 0;
 
     private String fname;
     private Course[] courses;
     private String id;
-    private int courseNum;
     private String lname;
     private Department department;
 

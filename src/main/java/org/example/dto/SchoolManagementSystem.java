@@ -37,8 +37,10 @@ public class SchoolManagementSystem {
      */
     public Department findDepartment(String departmentId) {
         for (Department department : departments) {
-            if (departmentId.equals(department.getId())) {
-                return department;
+            if (department != null) {
+                if (departmentId.equals(department.getId())) {
+                    return department;
+                }
             }
         }
         return null;
@@ -51,8 +53,10 @@ public class SchoolManagementSystem {
      */
     public Teacher findTeacher(String teacherId) {
         for (Teacher teacher : teachers) {
-            if (teacherId.equals(teacher.getId())) {
-                return teacher;
+            if (teacher != null) {
+                if (teacherId.equals(teacher.getId())) {
+                    return teacher;
+                }
             }
         }
         return null;
@@ -65,8 +69,10 @@ public class SchoolManagementSystem {
      */
     public Course findCourse(String courseId) {
         for (Course course : courses) {
-            if (courseId.equals(course.getId())) {
-                return course;
+            if (course != null) {
+                if (courseId.equals(course.getId())) {
+                    return course;
+                }
             }
         }
         return null;
@@ -79,8 +85,10 @@ public class SchoolManagementSystem {
      */
     public Student findStudent(String studentId) {
         for (Student student : students) {
-            if (studentId.equals(student.getId())) {
-                return student;
+            if (student != null) {
+                if (studentId.equals(student.getId())) {
+                    return student;
+                }
             }
         }
         return null;
@@ -140,7 +148,7 @@ public class SchoolManagementSystem {
     public void addCourse(String courseName, double credit, String departmentId) {
         if (courseNum < MAX_COURSES_NUM) {
             courses[courseNum] = new Course(courseName, credit, findDepartment(departmentId));
-            System.out.printf(courses[courseNum++] + "added successfully \n");
+            System.out.printf(courses[courseNum++] + " added successfully \n");
         } else {
             System.out.println("Max courses reached, add a new course failed.");
         }
@@ -153,7 +161,7 @@ public class SchoolManagementSystem {
         String departmentsStr = "";
         for (Department department : departments) {
             if (department != null) {
-                departmentsStr += department + "\n";
+                departmentsStr += department;
             }
         }
         System.out.println(departmentsStr);
@@ -167,7 +175,7 @@ public class SchoolManagementSystem {
         String studentsStr = "";
         for (Student student : students) {
             if (student != null) {
-                studentsStr += student + "\n";
+                studentsStr += student;
             }
         }
         System.out.println(studentsStr);
@@ -181,7 +189,7 @@ public class SchoolManagementSystem {
         String teachersStr = "";
         for (Teacher teacher : teachers) {
             if (teacher != null) {
-                teachersStr += teacher + "\n";
+                teachersStr += teacher;
             }
         }
         System.out.println(teachersStr);
@@ -195,7 +203,7 @@ public class SchoolManagementSystem {
         String coursesStr = "";
         for (Course course : courses) {
             if (course != null) {
-                coursesStr += course + "\n";
+                coursesStr += course;
             }
         }
         System.out.println(coursesStr);
@@ -207,6 +215,10 @@ public class SchoolManagementSystem {
      * @param courseId course assigned to
      */
     public void modifyCourseTeacher(String teacherId, String courseId) {
+        for (Teacher teacher : teachers) {
+            findCourse(courseId);
+            findTeacher(teacherId);
+        }
     }
 
     /**
@@ -215,5 +227,7 @@ public class SchoolManagementSystem {
      * @param courseId course that they're being registered to.
      */
     public void registerCourse(String studentId, String courseId) {
+        findCourse(courseId);
+        findTeacher(studentId);
     }
 }
