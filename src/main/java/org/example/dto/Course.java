@@ -13,19 +13,17 @@ import lombok.*;
 public class Course {
     private static int nextId = 1;
     private static final int MAX_STUDENT_NUM  = 5;
+    private int studentNum = 0;
 
     private double credit;
     private String id;
     private Student[] students;
     private Department department;
-    private int studentNum;
     private Teacher teacher;
     private String courseName;
 
     public Course(String courseName, double credit, Department department) {
-        for (; nextId <= 5; nextId++) {
-            this.id = String.format("C%03d", nextId++);
-        }
+        this.id = String.format("C%03d", nextId++);
         this.credit = credit;
         this.courseName = courseName;
         this.department = department;

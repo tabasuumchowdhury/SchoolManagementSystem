@@ -11,8 +11,8 @@ import lombok.*;
 @Setter
 public class Student {
 
-    private static final int MAX_COURSE_NUM  = 5;
     private static int nextId = 1;
+    private static final int MAX_COURSE_NUM = 5;
 
     private String fname;
     private Course[] courses;
@@ -21,11 +21,9 @@ public class Student {
     private String lname;
     private Department department;
 
-    public Student(String fname, String lname, Department department) {
-        for (; nextId <= 200; nextId++) {
-            this.id = String.format("S%03d", nextId++);
-        }
-        this.fname = fname;
+    public Student(String studentFname, String lname, Department department) {
+        this.id = String.format("S%03d", nextId++);
+        this.fname = studentFname;
         this.lname = lname;
         this.department = department;
         this.courseNum = 0;

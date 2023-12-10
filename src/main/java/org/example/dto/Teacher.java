@@ -16,14 +16,10 @@ public class Teacher {
     private String id;
 
     public Teacher(String fname, String lname, Department department) {
-        for (; nextId <= 20; nextId++) {
-            this.id = String.format("T%03d", nextId++);
-        }
+        this.id = String.format("T%03d", nextId++);
         this.fname = fname;
         this.lname = lname;
         this.department = department;
         String name = fname + lname;
     }
-
-
 }
