@@ -32,6 +32,7 @@ public class SchoolManagementSystem {
 
     /**
      * i) Searches for a department based on the departmentId.
+     *
      * @param departmentId used to find the department.
      * @return the department, or if there's no matches it returns null.
      */
@@ -48,6 +49,7 @@ public class SchoolManagementSystem {
 
     /**
      * j) Searches for a teacher based on the teacherId.
+     *
      * @param teacherId used to find the teacher.
      * @return the teacher, or if there's no matches it returns null.
      */
@@ -64,6 +66,7 @@ public class SchoolManagementSystem {
 
     /**
      * k) Searches for a course based on the courseId.
+     *
      * @param courseId used to find the course.
      * @return the course, or if there's no matches it returns null.
      */
@@ -80,6 +83,7 @@ public class SchoolManagementSystem {
 
     /**
      * l) Searches for a student based on the studentId.
+     *
      * @param studentId used to find the student.
      * @return the student, or if there's no matches it returns null.
      */
@@ -97,6 +101,7 @@ public class SchoolManagementSystem {
     /**
      * a) Adds a new department
      * The id is automatically created
+     *
      * @param departmentName the name of the department created
      */
     public void addDepartment(String departmentName) {
@@ -110,8 +115,9 @@ public class SchoolManagementSystem {
 
     /**
      * b) Adds a student
-     * @param fname Student's first name
-     * @param lname Student's last name
+     *
+     * @param fname        Student's first name
+     * @param lname        Student's last name
      * @param departmentId the department they're registered to
      */
     public void addStudent(String fname, String lname, String departmentId) {
@@ -126,11 +132,12 @@ public class SchoolManagementSystem {
     /**
      * c) Adds a new teacher to the school.
      * ID is automatically created.
-     * @param fname teacher's first name
-     * @param lname teache's last name
+     *
+     * @param fname        teacher's first name
+     * @param lname        teache's last name
      * @param departmentId the department they're registered to.
      */
-    public void addTeacher(String fname, String lname, String departmentId){
+    public void addTeacher(String fname, String lname, String departmentId) {
         if (teacherNum < MAX_TEACHER_NUM) {
             teachers[teacherNum] = new Teacher(fname, lname, findDepartment(departmentId));
             System.out.printf(teachers[teacherNum++] + " added successfully \n");
@@ -142,8 +149,9 @@ public class SchoolManagementSystem {
 
     /**
      * d) Adds a course
-     * @param courseName the name of the course being added
-     * @param credit the number of credits the course counts for
+     *
+     * @param courseName   the name of the course being added
+     * @param credit       the number of credits the course counts for
      * @param departmentId the department the course is registered to.
      */
     public void addCourse(String courseName, double credit, String departmentId) {
@@ -186,7 +194,7 @@ public class SchoolManagementSystem {
      * g) Displays all the teachers of a school, that aren't null
      * Displays if there are any courses or departments.
      */
-    public void printTeachers(){
+    public void printTeachers() {
         String teachersStr = "";
         for (Teacher teacher : teachers) {
             if (teacher != null) {
@@ -200,7 +208,7 @@ public class SchoolManagementSystem {
      * h) Displays all the courses of a school, that aren't null
      * Displays if there are any teachers, students or departments.
      */
-    public void printCourses(){
+    public void printCourses() {
         String coursesStr = "";
         for (Course course : courses) {
             if (course != null) {
@@ -212,8 +220,9 @@ public class SchoolManagementSystem {
 
     /**
      * m) Modifies the teacher of a course
+     *
      * @param teacherId teacher being assigned
-     * @param courseId course assigned to
+     * @param courseId  course assigned to
      */
     public void modifyCourseTeacher(String teacherId, String courseId) {
         if (findTeacher(teacherId) != null && findCourse(courseId) != null) {
@@ -230,11 +239,27 @@ public class SchoolManagementSystem {
 
     /**
      * n) Registers a course for a student, but prints a message if any failure occurs.
+     *
      * @param studentId the student being registered.
-     * @param courseId course that they're being registered to.
+     * @param courseId  course that they're being registered to.
      */
     public void registerCourse(String studentId, String courseId) {
-        findCourse(courseId);
-        findTeacher(studentId);
+        if (findStudent(studentId) != null && findCourse(courseId) != null) {
+            for (int i = 0; i < 5; i++) {
+                if (findCourse(courseId).getStudents()[i] == null) {
+                    break;
+                } else {
+                    findCourse(courseId).getStudents()[i] = findStudent(studentId);
+                    System.out.println("Student register course succesfully");
+                    System.out.printf("Latest student info: %s\n", students);
+                    System.out.printf("Latest course info: %s\n", courses);}
+            }
+            if (findCourse(courseId) == null) {
+                System.out.printf("Cannot find any course match with courseId %s, register student for course %s failed. \n", courseId, courseId);
+            }
+            if (findStudent(studentId) == null) {
+                System.out.printf("Cannot find any student match with studentId %s, register student for course %s failed.\n", studentId, courseId);
+            }
+        }
     }
 }
