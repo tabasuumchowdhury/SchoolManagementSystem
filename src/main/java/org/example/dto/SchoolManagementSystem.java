@@ -1,8 +1,6 @@
 package org.example.dto;
 import lombok.*;
 
-import java.util.Arrays;
-
 @Getter
 @Setter
 public class SchoolManagementSystem {
@@ -245,15 +243,17 @@ public class SchoolManagementSystem {
      */
     public void registerCourse(String studentId, String courseId) {
         if (findStudent(studentId) != null && findCourse(courseId) != null) {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 1; i < 5; i++) {
                 if (findCourse(courseId).getStudents()[i] == null) {
                     findCourse(courseId).getStudents()[i] = findStudent(studentId);
-                    System.out.println("Student register course succesfully");
-                    System.out.printf("Latest student info: %s\n", students);
-                    System.out.printf("Latest course info: %s\n", courses);
+                    break;
                 } else {
                     break;
                 }
+            }
+                System.out.println("Student register course succesfully");
+                System.out.printf("Latest course info: %s\n", courses);
+//                    System.out.printf("Latest student info: %s\n", students);
                 if (findCourse(courseId) == null) {
                     System.out.printf("Cannot find any course match with courseId %s, register student for course %s failed. \n", courseId, courseId);
                 }
@@ -263,4 +263,3 @@ public class SchoolManagementSystem {
             }
         }
     }
-}

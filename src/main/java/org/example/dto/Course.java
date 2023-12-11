@@ -1,8 +1,6 @@
 package org.example.dto;
 import lombok.*;
 
-import java.util.Arrays;
-
 /**
  * @author tabasuum chowdhury
  * The courses (max 30) offered by a school, with IDs,
@@ -48,7 +46,7 @@ public class Course {
         } else {
             for (Student student : students) {
                 if (student != null) {
-                    courseStr += ", students =" + student;
+                    courseStr += ", students =[" + student.getFname() + " " + student.getLname() + ", ]";
                 }
             }
         }

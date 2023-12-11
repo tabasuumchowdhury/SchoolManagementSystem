@@ -1,8 +1,6 @@
 package org.example.dto;
 import lombok.*;
 
-import java.util.Arrays;
-
 /**
  * @author tabasuum chowdhury
  * The students (max 200) a school contains with IDs.

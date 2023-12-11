@@ -24,7 +24,5 @@ public class Main {
         System.out.println(sMS1.findCourse("C001") + "\n");
 
         sMS1.registerCourse("S001", "C001");
-
-
     }
 }

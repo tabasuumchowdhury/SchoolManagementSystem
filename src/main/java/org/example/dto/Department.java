@@ -1,9 +1,6 @@
 package org.example.dto;
 import lombok.*;
 
-
-
-
 /**
  * @author tabasuum chowdhury
  * The Departments (max 5) of a school with IDs
