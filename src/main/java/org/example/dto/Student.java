@@ -1,12 +1,13 @@
 package org.example.dto;
 import lombok.*;
 
+import java.util.Arrays;
+
 /**
  * @author tabasuum chowdhury
  * The students (max 200) a school contains with IDs.
  * All information stored, except classes.
  */
-@ToString
 @Getter
 @Setter
 public class Student {
@@ -29,5 +30,26 @@ public class Student {
         this.courseNum = 0;
         this.courses = new Course[MAX_COURSE_NUM];
         String name = fname + lname;
+    }
+
+    @Override
+    public String toString() {
+        String studentStr = "Student{" +
+                "courseNum=" + courseNum +
+                ", fname='" + fname + '\'';
+                    if (courses[1] == null) {
+                        studentStr += ", courses = []";
+                    } else {
+                        for (Course course : courses) {
+                            if (course != null) {
+                                studentStr += ", courses =" + course;
+                            }
+                        }
+                    }
+                studentStr += ", id='" + id + '\'' +
+                ", lname='" + lname + '\'' +
+                ", department=" + department +
+                '}';
+                return studentStr;
     }
 }

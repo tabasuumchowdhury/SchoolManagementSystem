@@ -139,6 +139,7 @@ public class SchoolManagementSystem {
         }
     }
 
+
     /**
      * d) Adds a course
      * @param courseName the name of the course being added
@@ -216,6 +217,7 @@ public class SchoolManagementSystem {
      */
     public void modifyCourseTeacher(String teacherId, String courseId) {
         for (Teacher teacher : teachers) {
+
             findCourse(courseId);
             findTeacher(teacherId);
         }

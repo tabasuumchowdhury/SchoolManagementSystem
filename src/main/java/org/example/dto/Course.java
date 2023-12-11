@@ -1,6 +1,8 @@
 package org.example.dto;
 import lombok.*;
 
+import java.util.Arrays;
+
 /**
  * @author tabasuum chowdhury
  * The courses (max 30) offered by a school, with IDs,
@@ -9,7 +11,6 @@ import lombok.*;
  */
 @Setter
 @Getter
-@ToString
 public class Course {
     private static int nextId = 1;
     private static final int MAX_STUDENT_NUM  = 5;
@@ -30,5 +31,34 @@ public class Course {
         this.teacher = null;
         this.students = new Student[MAX_STUDENT_NUM];
         this.studentNum = 0;
+    }
+
+    @Override
+    public String toString() {
+        String courseStr = "Course{" +
+                "studentNum=" + studentNum +
+                ", credit=" + credit +
+                ", id='" + id + '\'';
+
+        if (students[1] == null) {
+            courseStr += ", students= []";
+        } else {
+            for (Student student : students) {
+                if (student != null) {
+                    courseStr += ", students =" + student;
+                }
+            }
+        }
+
+        courseStr += ", department=" + department;
+
+        if (teacher != null) {
+            courseStr += ", teacher=" + teacher;
+
+        }
+
+        courseStr += ", courseName='" + courseName + '\'' + '}';
+
+        return courseStr;
     }
 }
