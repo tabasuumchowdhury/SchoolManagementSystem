@@ -31,27 +31,33 @@ public class Course {
         this.studentNum = 0;
     }
 
-    public void setNewStudent() {
-        ;
+    public void setNewStudent(Student newStudent) {
+        for (Student student : students) {
+            if (student != null && student.getId() == newStudent.getId()) {
+                System.out.println("Student has already registered for course, register course for student failed");
+                return;
+            }
+        }
+        students[++studentNum] = newStudent;
     }
+
     @Override
     public String toString() {
         String courseStr = "Course{" +
                 "studentNum=" + studentNum +
                 ", credit=" + credit +
-                ", id='" + id + '\'';
+                ", id='" + id + '\'' +
+                ", students=[";
 
-        if (students[1] == null) {
-            courseStr += ", students=[]";
-        } else {
+        if (students[1] != null) {
             for (Student student : students) {
                 if (student != null) {
-                    courseStr += ", students =[" + student.getFname() + " " + student.getLname() + ", ]";
+                    courseStr += student.getFname() + " " + student.getLname() + ", ";
                 }
             }
         }
 
-        courseStr += ", department=" + department;
+        courseStr += "], department=" + department;
         if (teacher != null) {
             courseStr += ", teacher=" + teacher.getFname() + " " + teacher.getLname();
         } else {

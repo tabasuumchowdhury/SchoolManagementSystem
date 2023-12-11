@@ -242,24 +242,42 @@ public class SchoolManagementSystem {
      * @param courseId  course that they're being registered to.
      */
     public void registerCourse(String studentId, String courseId) {
-        if (findStudent(studentId) != null && findCourse(courseId) != null) {
-            for (int i = 1; i < 5; i++) {
-                if (findCourse(courseId).getStudents()[i] == null) {
-                    findCourse(courseId).getStudents()[i] = findStudent(studentId);
-                    break;
-                } else {
-                    break;
-                }
-            }
-                System.out.println("Student register course succesfully");
-                System.out.printf("Latest course info: %s\n", courses);
-//                    System.out.printf("Latest student info: %s\n", students);
-                if (findCourse(courseId) == null) {
-                    System.out.printf("Cannot find any course match with courseId %s, register student for course %s failed. \n", courseId, courseId);
-                }
-                if (findStudent(studentId) == null) {
-                    System.out.printf("Cannot find any student match with studentId %s, register student for course %s failed.\n", studentId, courseId);
-                }
+        int numOfStudents = 0;
+        int numOfRegisteredCourses = 0;
+
+        if (findCourse(courseId) == null) {
+            System.out.printf("Cannot find any course match with courseId %s, register student for course %s failed. \n", courseId, courseId);
+            return;
+        }
+        if (findStudent(studentId) == null) {
+            System.out.printf("Cannot find any student match with studentId %s, register student for course %s failed.\n", studentId, courseId);
+            return;
+        }
+
+        for (Student student : findCourse(courseId).getStudents()) {
+            if (student != null) {
+                numOfStudents++;
             }
         }
+        if (numOfStudents >= 5) {
+            System.out.printf("Course %s has been fully registered, register %s for student %s failed.\n", courseId, courseId, studentId);
+            return;
+        }
+
+        for (Course course : findStudent(studentId).getCourses()) {
+            if (course != null) {
+                numOfRegisteredCourses++;
+            }
+        }
+        if (numOfRegisteredCourses >= 5) {
+            System.out.printf("Student %s has already registered 5 courses, register course for student %s has failed.\n", studentId, studentId);
+            return;
+        }
+
+        findStudent(studentId).setNewCourse(findCourse(courseId));
+        findCourse(courseId).setNewStudent(findStudent(studentId));
+        System.out.println("Student register course succesfully");
+        System.out.printf("Latest course info: %s\n", courses);
+        System.out.printf("Latest student info: %s\n", students);
     }
+}

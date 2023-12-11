@@ -20,32 +20,39 @@ public class Student {
     private String lname;
     private Department department;
 
-    public Student(String studentFname, String lname, Department department) {
+    public Student(String fname, String lname, Department department) {
         this.id = String.format("S%03d", nextId++);
-        this.fname = studentFname;
+        this.fname = fname;
         this.lname = lname;
         this.department = department;
         this.courseNum = 0;
         this.courses = new Course[MAX_COURSE_NUM];
-        String name = fname + lname;
+    }
+
+    public void setNewCourse (Course newCourse) {
+        for (Course course : courses) {
+            if (course != null && newCourse.getId() == course.getId()) {
+                return;
+            }
+        }
+        courses[++courseNum] = newCourse;
     }
 
     @Override
     public String toString() {
         String studentStr = "Student{" +
-                "courseNum=" + courseNum +
-                ", fname='" + fname + '\'';
-                    if (courses[1] == null) {
-                        studentStr += ", courses = []";
-                    } else {
+                "courseNum=" + courseNum  +
+                ", name='" + fname + " " + lname + '\'' +
+                ", courses=[";
+
+                    if (courses[1] != null) {
                         for (Course course : courses) {
                             if (course != null) {
-                                studentStr += ", courses =" + course;
+                                studentStr += course.getCourseName() + ", ";
                             }
                         }
                     }
-                studentStr += ", id='" + id + '\'' +
-                ", lname='" + lname + '\'' +
+                studentStr += "], id='" + id + '\'' +
                 ", department=" + department +
                 '}';
                 return studentStr;

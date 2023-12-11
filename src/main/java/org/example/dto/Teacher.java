@@ -20,6 +20,5 @@ public class Teacher {
         this.fname = fname;
         this.lname = lname;
         this.department = department;
-        String name = fname + lname;
     }
 }

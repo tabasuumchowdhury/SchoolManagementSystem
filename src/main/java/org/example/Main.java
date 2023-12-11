@@ -15,6 +15,7 @@ public class Main {
         System.out.println(sMS1.findTeacher("T001" ) + "\n");
 
         sMS1.addStudent("Tab", "Chow", "D001");
+        sMS1.addStudent("Bro", "Girl", "D001");
         sMS1.printStudents();
         System.out.println(sMS1.findStudent("S001") + "\n");
 
@@ -24,5 +25,7 @@ public class Main {
         System.out.println(sMS1.findCourse("C001") + "\n");
 
         sMS1.registerCourse("S001", "C001");
+        sMS1.registerCourse("S002", "C001");
+        sMS1.registerCourse("S001", "C002");
     }
 }
