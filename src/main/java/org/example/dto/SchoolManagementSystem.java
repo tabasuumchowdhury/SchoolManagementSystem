@@ -216,10 +216,15 @@ public class SchoolManagementSystem {
      * @param courseId course assigned to
      */
     public void modifyCourseTeacher(String teacherId, String courseId) {
-        for (Teacher teacher : teachers) {
-
-            findCourse(courseId);
-            findTeacher(teacherId);
+        if (findTeacher(teacherId) != null && findCourse(courseId) != null) {
+            findCourse(courseId).setTeacher(findTeacher(teacherId));
+            System.out.printf("%s teacher info updated successfully. \n", findCourse(courseId));
+        }
+        if (findCourse(courseId) == null) {
+            System.out.printf("Cannot find any course match with courseId %s, modify teacher for course %s failed. \n", courseId, courseId);
+        }
+        if (findTeacher(teacherId) == null) {
+            System.out.printf("Cannot find any teacher match with teacherId %s, modify teacher for course %s failed.\n", teacherId, courseId);
         }
     }
 

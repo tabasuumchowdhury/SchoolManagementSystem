@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class Course {
     private static int nextId = 1;
     private static final int MAX_STUDENT_NUM  = 5;
-    private int studentNum = 0;
+    private int studentNum;
 
     private double credit;
     private String id;
@@ -41,7 +41,7 @@ public class Course {
                 ", id='" + id + '\'';
 
         if (students[1] == null) {
-            courseStr += ", students= []";
+            courseStr += ", students=[]";
         } else {
             for (Student student : students) {
                 if (student != null) {
@@ -51,14 +51,12 @@ public class Course {
         }
 
         courseStr += ", department=" + department;
-
         if (teacher != null) {
-            courseStr += ", teacher=" + teacher;
-
+            courseStr += ", teacher=" + teacher.getFname() + " " + teacher.getLname();
+        } else {
+            courseStr += ", teacher=null";
         }
-
         courseStr += ", courseName='" + courseName + '\'' + '}';
-
         return courseStr;
     }
 }
