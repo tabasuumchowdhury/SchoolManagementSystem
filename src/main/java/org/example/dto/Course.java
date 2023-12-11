@@ -31,6 +31,11 @@ public class Course {
         this.studentNum = 0;
     }
 
+    /**
+     * adds a new student to Student[]
+     *
+     * @param newStudent student being added
+     */
     public void setNewStudent(Student newStudent) {
         for (Student student : students) {
             if (student != null && student.getId() == newStudent.getId()) {
@@ -49,6 +54,7 @@ public class Course {
                 ", id='" + id + '\'' +
                 ", students=[";
 
+        // checks if Student[] is empty and only adds student names for students that exist.
         if (students[1] != null) {
             for (Student student : students) {
                 if (student != null) {
@@ -57,13 +63,16 @@ public class Course {
             }
         }
 
-        courseStr += "], department=" + department;
+        // prints teachers name if teacher has been assigned to class
         if (teacher != null) {
             courseStr += ", teacher=" + teacher.getFname() + " " + teacher.getLname();
         } else {
             courseStr += ", teacher=null";
         }
-        courseStr += ", courseName='" + courseName + '\'' + '}';
+
+        courseStr += "], department=" + department+
+                ", courseName='" + courseName + '\'' + '}';
+
         return courseStr;
     }
 }

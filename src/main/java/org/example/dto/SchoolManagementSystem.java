@@ -20,7 +20,6 @@ public class SchoolManagementSystem {
     private int courseNum = 0;
     private Course[] courses;
 
-
     public SchoolManagementSystem() {
         this.departments = new Department[MAX_DEPARTMENT_NUM];
         this.students = new Student[MAX_STUDENT_NUM];
@@ -97,8 +96,8 @@ public class SchoolManagementSystem {
     }
 
     /**
-     * a) Adds a new department
-     * The id is automatically created
+     * a) Adds a new department if limit has not been reached.
+     * The id is automatically created.
      *
      * @param departmentName the name of the department created
      */
@@ -112,7 +111,7 @@ public class SchoolManagementSystem {
     }
 
     /**
-     * b) Adds a student
+     * b) Adds a student if limit has not been reached.
      *
      * @param fname        Student's first name
      * @param lname        Student's last name
@@ -128,7 +127,7 @@ public class SchoolManagementSystem {
     }
 
     /**
-     * c) Adds a new teacher to the school.
+     * c) Adds a new teacher to the school if limit has not been reached.
      * ID is automatically created.
      *
      * @param fname        teacher's first name
@@ -144,9 +143,8 @@ public class SchoolManagementSystem {
         }
     }
 
-
     /**
-     * d) Adds a course
+     * d) Adds a course if limit has not been reached
      *
      * @param courseName   the name of the course being added
      * @param credit       the number of credits the course counts for
@@ -223,13 +221,16 @@ public class SchoolManagementSystem {
      * @param courseId  course assigned to
      */
     public void modifyCourseTeacher(String teacherId, String courseId) {
+        // registers teacher to a course if both Ids belong to an existing teacher and course
         if (findTeacher(teacherId) != null && findCourse(courseId) != null) {
             findCourse(courseId).setTeacher(findTeacher(teacherId));
             System.out.printf("%s teacher info updated successfully. \n", findCourse(courseId));
         }
+        // prints message if courseId does not belong to a course
         if (findCourse(courseId) == null) {
             System.out.printf("Cannot find any course match with courseId %s, modify teacher for course %s failed. \n", courseId, courseId);
         }
+        // prints message if teacherId does not belong to a teacher
         if (findTeacher(teacherId) == null) {
             System.out.printf("Cannot find any teacher match with teacherId %s, modify teacher for course %s failed.\n", teacherId, courseId);
         }
@@ -245,35 +246,42 @@ public class SchoolManagementSystem {
         int numOfStudents = 0;
         int numOfRegisteredCourses = 0;
 
+        // checks if the courseId belongs to a course
         if (findCourse(courseId) == null) {
             System.out.printf("Cannot find any course match with courseId %s, register student for course %s failed. \n", courseId, courseId);
             return;
         }
+        // checks if the studentId belongs to a student
         if (findStudent(studentId) == null) {
             System.out.printf("Cannot find any student match with studentId %s, register student for course %s failed.\n", studentId, courseId);
             return;
         }
 
+        // counts number of students in Students[] inside given course class
         for (Student student : findCourse(courseId).getStudents()) {
             if (student != null) {
                 numOfStudents++;
             }
         }
+        // checks if number of students has reached limit
         if (numOfStudents >= 5) {
             System.out.printf("Course %s has been fully registered, register %s for student %s failed.\n", courseId, courseId, studentId);
             return;
         }
 
+        // counts number of courses in Course[] inside given student class
         for (Course course : findStudent(studentId).getCourses()) {
             if (course != null) {
                 numOfRegisteredCourses++;
             }
         }
+        // checks if number of registered courses has reached limit
         if (numOfRegisteredCourses >= 5) {
             System.out.printf("Student %s has already registered 5 courses, register course for student %s has failed.\n", studentId, studentId);
             return;
         }
 
+        // registers student to course, course to student and prints updated info
         findStudent(studentId).setNewCourse(findCourse(courseId));
         findCourse(courseId).setNewStudent(findStudent(studentId));
         System.out.println("Student register course succesfully");

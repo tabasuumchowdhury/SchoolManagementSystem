@@ -29,6 +29,10 @@ public class Student {
         this.courses = new Course[MAX_COURSE_NUM];
     }
 
+    /**
+     * adds a course to Course[]
+     * @param newCourse course that is being added
+     */
     public void setNewCourse (Course newCourse) {
         for (Course course : courses) {
             if (course != null && newCourse.getId() == course.getId()) {
@@ -45,16 +49,18 @@ public class Student {
                 ", name='" + fname + " " + lname + '\'' +
                 ", courses=[";
 
-                    if (courses[1] != null) {
-                        for (Course course : courses) {
-                            if (course != null) {
-                                studentStr += course.getCourseName() + ", ";
-                            }
-                        }
-                    }
-                studentStr += "], id='" + id + '\'' +
+        // checks if Course[] is empty and only adds courseName for courses that exist
+        if (courses[1] != null) {
+            for (Course course : courses) {
+                if (course != null) {
+                    studentStr += course.getCourseName() + ", ";
+                }
+            }
+        }
+
+        studentStr += "], id='" + id + '\'' +
                 ", department=" + department +
                 '}';
-                return studentStr;
+        return studentStr;
     }
 }
