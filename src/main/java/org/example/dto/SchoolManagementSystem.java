@@ -247,18 +247,19 @@ public class SchoolManagementSystem {
         if (findStudent(studentId) != null && findCourse(courseId) != null) {
             for (int i = 0; i < 5; i++) {
                 if (findCourse(courseId).getStudents()[i] == null) {
-                    break;
-                } else {
                     findCourse(courseId).getStudents()[i] = findStudent(studentId);
                     System.out.println("Student register course succesfully");
                     System.out.printf("Latest student info: %s\n", students);
-                    System.out.printf("Latest course info: %s\n", courses);}
-            }
-            if (findCourse(courseId) == null) {
-                System.out.printf("Cannot find any course match with courseId %s, register student for course %s failed. \n", courseId, courseId);
-            }
-            if (findStudent(studentId) == null) {
-                System.out.printf("Cannot find any student match with studentId %s, register student for course %s failed.\n", studentId, courseId);
+                    System.out.printf("Latest course info: %s\n", courses);
+                } else {
+                    break;
+                }
+                if (findCourse(courseId) == null) {
+                    System.out.printf("Cannot find any course match with courseId %s, register student for course %s failed. \n", courseId, courseId);
+                }
+                if (findStudent(studentId) == null) {
+                    System.out.printf("Cannot find any student match with studentId %s, register student for course %s failed.\n", studentId, courseId);
+                }
             }
         }
     }

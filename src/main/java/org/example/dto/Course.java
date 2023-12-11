@@ -33,6 +33,9 @@ public class Course {
         this.studentNum = 0;
     }
 
+    public void setNewStudent() {
+        ;
+    }
     @Override
     public String toString() {
         String courseStr = "Course{" +
